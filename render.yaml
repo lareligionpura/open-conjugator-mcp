@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: open-conjugator-mcp
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: MCP_PATH
+        value: /api/open-conjugator-mcp
+      - key: MORPH_DATA_DIR
+        value: /app/data
+

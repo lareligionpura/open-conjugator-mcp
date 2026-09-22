@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "open-conjugator-mcp"
+version = "2.0.0"
+description = "Read-only MCP server for Arabic and multilingual morphology using CAMeL Tools, CAMeL Morph, and UniMorph."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Open Conjugator MCP contributors" }]
+dependencies = [
+  "mcp==2.2.0",
+  "muddler==0.1.3",
+  "requests==2.34.2",
+]
+
+[project.scripts]
+open-conjugator-mcp = "open_conjugator_mcp.__main__:main"
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8.4,<9",
+  "pytest-asyncio>=1.4,<2",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/open_conjugator_mcp"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
